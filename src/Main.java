@@ -18,7 +18,13 @@ public class Main {
 
         Philosopher[] philosophers = new Philosopher[6];
         for (int i = 0 ; i < 6 ; i++) {
-            philosophers[i] = new Philosopher(sporks[i], sporks[i >= 5 ? 0 : i + 1]);
+            if (i == 0) {
+		// First philosopher gets forks in reverse order, i.e. he picks up the left fork first
+                philosophers[i] = new Philosopher(sporks[i + 1], sporks[i]);
+            } else {
+                philosophers[i] = new Philosopher(sporks[i], sporks[i >= 5 ? 0 : i + 1]);
+            }
+
         }
 
         for (Philosopher philosopher : philosophers) {
